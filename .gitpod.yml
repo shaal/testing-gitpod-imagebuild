@@ -1,2 +1,1 @@
-image:
-  file: .gitpod/.gitpod.Dockerfile
+image: drupalpod/gitpod-with-ddev
