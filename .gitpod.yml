@@ -1,1 +1,1 @@
-image: drupalpod/gitpod-with-ddev
+image: drupalpod/gitpod-with-ddev:download

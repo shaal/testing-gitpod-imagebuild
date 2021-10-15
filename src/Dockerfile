@@ -20,7 +20,9 @@ RUN brew install gitui
 RUN brew install dialog
 
 # Install latest composer
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-RUN sudo php composer-setup.php --install-dir /usr/bin --filename composer
-RUN php -r "unlink('composer-setup.php');"
+RUN sudo curl -o /usr/bin/composer -sSL https://getcomposer.org/composer-stable.phar && sudo chmod ugo+wx /usr/bin/composer
+
+# Download ddev images
+COPY download-ddev-images.sh /
+RUN sudo chmod +x /download-ddev-images.sh
+CMD sudo /download-ddev-images.sh
